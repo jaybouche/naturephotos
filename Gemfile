@@ -67,3 +67,11 @@ gem 'bootstrap', '~> 4.4.1'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
+gem 'simple_form'
+gem 'devise'
+gem 'carrierwave', '~> 2.0'
+gem 'simple_form'
+gem 'mini_magick'
+gem 'carrierwave-aws'
+gem "figaro"
+gem "geocoder"
