@@ -3,12 +3,71 @@
 <div class="booyah-box col-10 offset-1">
   <h1 class="text-center">Nature Photos</h1>
   <hr />
-
-<% @photos.each do |photo| %>
+  <% @photos.each do |photo| %>
     <h2 class="text-center">
-    <%= link_to photo.caption, photos_path(photo) %>
-    <%= image_tag photo.image.to_s, class: 'img-fluid' %>
-  <br /> 
+    <br /><br /><%= photo.caption %><br /><br /></h2>
+      <%= image_tag photo.image.to_s, class: 'img-fluid' %>
+    </br> </br>
+<div class="container">
+  <!-- Button to Open the Modal -->
+  <!-- add attribute data-lat="5.134515" data-long="97.151759" to pass location data -->
+  <button type="button" id="open" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-lat="5.134515" data-long="97.151759">
+  Location
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Address</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+           <!-- show map here -->
+            <div id="map"></div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+    <% if photo.latitude.present? && photo.longitude.present? %>
+      <div class="modal-body">
+        <script>
+          function initMap() {
+            var myLatLng = {lat: <%= photo.latitude %>, lng: <%= photo.longitude %>};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 12,
+              center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+            });
+          }
+        </script>
+        <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEklua5T3uP_WgSBOCKNns-Nzci0f-uLk&callback=initMap">
+        </script>
+        <div id="map"></div>
+    <% end %>
+        
+
 <% end %>
 
 </div>
+

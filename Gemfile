@@ -75,3 +75,7 @@ gem 'mini_magick'
 gem 'carrierwave-aws'
 gem "figaro"
 gem "geocoder"
+group :development, :test do
+gem 'rspec-rails', '~> 3.5'
+gem "factory_bot_rails"
+end
