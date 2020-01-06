@@ -102,10 +102,23 @@ body {
   height: 300px;
 }
 
-.btn btn-primary {
-  color: #ff3333;
-  background-color: #FFEEEE;
-  border-radius: 3px;
-  padding: 2px 8px 2px 8px;
-  margin: 10px;
+.img-fluid {
+  max-width: 70%;
+  height: auto;
+  img-align: center;
+  margin: auto;
+  display: block;
 }
+
+.Row {
+  display: table;
+  width: 100%;
+  table-layout: fixed; 
+  border-spacing: 10px;
+}
+
+.btn btn-primary {
+  font-family: "Frutiger Linotype",Frutiger; 
+  font-weight: 300;
+  background-color: #FFEEEE;
+}  

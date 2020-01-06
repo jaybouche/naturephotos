@@ -21,8 +21,10 @@ class PhotosController < ApplicationController
   end
 
   def show
-    # Look in grammable gram controller spec for show
+    @photo = Photo.find(params[:id])
+    return render_not_found if @photo.blank?
   end
+
 end
 
 

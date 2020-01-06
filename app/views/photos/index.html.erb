@@ -9,9 +9,10 @@
       <%= image_tag photo.image.to_s, class: 'img-fluid' %>
     </br> </br>
 <div class="container">
+ <div class="row">
+  <div class="col-sm">
   <!-- Button to Open the Modal -->
-  <!-- add attribute data-lat="5.134515" data-long="97.151759" to pass location data -->
-  <button type="button" id="open" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-lat="5.134515" data-long="97.151759">
+  <button type="button" id="open" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
   Location
   </button>
 
@@ -40,8 +41,8 @@
       </div>
     </div>
   </div>
-
 </div>
+
     <% if photo.latitude.present? && photo.longitude.present? %>
       <div class="modal-body">
         <script>
@@ -65,9 +66,88 @@
         </script>
         <div id="map"></div>
     <% end %>
-        
+  <div class="col-sm">
+  <!-- Button to Open the Modal -->
+  <button type="button" id="open" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+  Weather
+  </button>
 
-<% end %>
+  <!-- The Modal -->
+  <div class="modal" id="myModal2">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Weather</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+    <% if photo.latitude.present? && photo.longitude.present? %>
+      <script>
+        function getWeather() {
+        let lat = <%= photo.latitude %>;
+        let lon = <%= photo.longitude %>;
+
+        $.ajax({
+     url: "https://cors.io/?u=https://api.darksky.net/forecast/378128b0dfb0d0f93f989b85746138a7/" + lat + "," + lon})
+
+  $.get(darkSkyurl, function data() {
+    
+      console.log();
+   })
+    </script> 
+    
+    <% end %>
+<div class="col-sm">
+<!-- Button to Open the Modal -->
+  <button type="button" id="open" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">
+  About
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal3">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Description</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+           <p><%= photo.description %></p>
+            
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+ <% end %>
 </div>
 
